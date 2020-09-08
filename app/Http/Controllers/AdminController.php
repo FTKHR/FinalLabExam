@@ -25,13 +25,45 @@ class AdminController extends Controller
     	return view('registration.index');
     }
     function register(RegisterValidate $request){
-    	$Employee= new Employee;
-    	$Employee->name=$request->name;
-    	$Employee->companyName=$request->companyName;
-    	$Employee->contactNumber=$request->contactNumber;
-    	$Employee->username=$request->username;
-    	$Employee->password=$request->password;
-    	$Employee->save();
-    	return redirect('/home');
+
+    	 if($request->session()->has('username')){
+	    	
+	    	if($request->session()->get('type')=="admin"){
+		    	
+		    	$Employee= new Employee;
+		    	$Employee->name=$request->name;
+		    	$Employee->companyName=$request->companyName;
+		    	$Employee->contactNumber=$request->contactNumber;
+		    	$Employee->username=$request->username;
+		    	$Employee->password=$request->password;
+		    	$Employee->save();
+		    	return redirect('/admin');
+		    }
+		   else{
+	    		return redirect('/home');
+	    	}
+	    }
+	    else{
+	    	return redirect('/login');
+	    }
     }
+     function deleteEmp($id, Request $request){
+
+        if($request->session()->has('username')){
+	    	if($request->session()->get('type')=="admin"){
+                $Employee= Employee::find($id);
+                $Employee->delete();
+
+                return redirect('/admin/');
+            }
+        	else{
+	    		return redirect('/home');
+	    	}
+	    }
+
+	    else{
+	    	return redirect('/login');
+	    }
+    }
+
 }

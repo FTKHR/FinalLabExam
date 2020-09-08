@@ -26,5 +26,6 @@ Route::get('/admin', ['uses'=>'AdminController@index']);
 
 Route::get('/admin/register', ['uses'=>'AdminController@regIndex']);
 Route::post('/admin/register', ['uses'=>'AdminController@register']);
+Route::get('/admin/delete/{id}', 'adminController@deleteEmp');
 
 Route::get('/home', ['uses'=>'HomeController@index']);
