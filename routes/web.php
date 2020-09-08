@@ -16,9 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/home');
 });
-route::get('/login',['uses'=>'LoginController@index']);
+route::get('/login', ['uses'=>'LoginController@index']);
 Route::post('/login', ['uses'=>'LoginController@verify']);
 
 Route::get('/register', ['uses'=>'RegistrationController@index']);
 Route::post('/register', ['uses'=>'RegistrationController@register']);
 
+Route::get('/admin', ['uses'=>'AdminController@index']);
+
+Route::get('/admin/register', ['uses'=>'AdminController@regIndex']);
+Route::post('/admin/register', ['uses'=>'AdminController@register']);
+
+Route::get('/home', ['uses'=>'HomeController@index']);

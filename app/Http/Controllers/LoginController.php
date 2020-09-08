@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Employee;
 
 class LoginController extends Controller
 {
@@ -16,19 +17,21 @@ class LoginController extends Controller
     {
         return view('login.index');
     }
-    function verify(Request $request){
+    public function verify(Request $request){
 
-        if($request->username=='admin'&&$request->password=='admin')
-        {
-            $request->session()->put('username', $request->username);
-            return redirect('/home');
-        }
-        $data = Login::where('username', $request->username)
+        $data = Employee::where('username', $request->username)
                     ->where('password', $request->password)
                     ->get();
         if (count($data) > 0) {
             $request->session()->put('username', $request->username);
-            return redirect('/home');
+            if($data[0]->type == "member"){
+                $request->session()->put('type', "member");
+                return redirect('/home');
+            }
+            else if($data[0]->type == "admin"){
+                $request->session()->put('type', "admin");
+                return redirect('/admin');
+            }
         } else {
             
         }
