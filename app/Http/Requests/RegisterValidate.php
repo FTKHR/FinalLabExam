@@ -25,10 +25,10 @@ class RegisterValidate extends FormRequest
     {
         return [
             'name'=>'required',
-            'username'=>'required|min:4|max:20|unique:App\PersonalDetails,username',
+            'username'=>'required|min:4|max:20|unique:App\employee,username',
             'password'=>'required|min:5|max:20|confirmed',
             'companyName'=>'required',
-            'contactNumber'=>'required|min:11|max:11|numeric'
+            'contactNumber'=>'required|min:11|numeric'
 
         ];
     }
@@ -44,10 +44,9 @@ class RegisterValidate extends FormRequest
             'password.required'=>'password is required',
             'password.min'=>'password can not be less than 5',
             'password.max'=>'password can not have more than 20 characters',
-            'password.confirmed'=>'passwords dont match'
+            'password.confirmed'=>'passwords dont match',
             'contactNumber.required'=>'phone number is required',
-            'contactNumber.min'=>'Phone number must be 11digits'
-            'contactNumber.max'=>'Phone number must be 11digits'
+            'contactNumber.min'=>'Phone number must be 11 digits',
             'contactNumber.numeric'=>'Phone number must be numeric'
         ];
     }
