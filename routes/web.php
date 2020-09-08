@@ -19,3 +19,6 @@ Route::get('/', function () {
 route::get('/login',['uses'=>'LoginController@index']);
 Route::post('/login', ['uses'=>'LoginController@verify']);
 
+Route::get('/register', ['uses'=>'RegistrationController@index']);
+Route::post('/register', ['uses'=>'RegistrationController@register']);
+
