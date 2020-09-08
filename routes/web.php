@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
+route::get('/login',['uses'=>'LoginController@index']);
+Route::post('/login', ['uses'=>'LoginController@verify']);
+
